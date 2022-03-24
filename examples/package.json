@@ -1,0 +1,11 @@
+{
+  "name": "tinymce-plugin-demo",
+  "version": "1.0.0",
+  "description": "TinyMCE Text editor plugin implementation demo for bachelor thesis",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivan Jeržabek",
+  "license": "MIT"
+}
