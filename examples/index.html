@@ -10,23 +10,72 @@
   <script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.tiny.cloud/1/wgs4ozbxmxch4gd60n8chlsvqrjoswcmwls5lywd446oqq0u  /tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
 </head>
 
 <body>
   <main class="container py-4">
-    <h1 class="text-center">CKEditor Plugin example</h1>
     <p>Developed by Ivan Jeržabek for 2021./2022. bachelor thesis at University of Zagreb, Faculty of Electrical
       Engineering and Computing</p>
+    <h1 class="text-center">CKEditor Plugin example</h1>
 
-    <div id="editor" style="min-height: 400px;"></div>
+    <div id="ckeditor-editor" style="min-height: 400px;"></div>
+
+    <hr>
+
+    <h1 class="text-center">TinyMCE Plugin example</h1>
+
+    <textarea id="tinymce-editor">Hello, World!</textarea>
   </main>
 
   <script>
+    /* ------------------------- CKEditor 5 ------------------------- */
     ClassicEditor
-      .create(document.querySelector('#editor'))
+      .create(document.querySelector('#ckeditor-editor'))
       .catch(error => {
         console.error(error);
       });
+
+
+    /* ------------------------- TinyMCE ------------------------- */
+    tinymce.init({
+      selector: 'textarea#tinymce-editor',
+      toolbar: 'customInsertButton customDateButton',
+      setup: function (editor) {
+        editor.ui.registry.addButton('customInsertButton', {
+          text: 'Enrich text',
+          onAction: function (_) {
+            editor.insertContent('&nbsp;<strong>It\'s my button!</strong>&nbsp;');
+          }
+        });
+
+        var toTimeHtml = function (date) {
+          return '<time datetime="' + date.toString() + '">' + date.toDateString() + '</time>';
+        };
+
+        editor.ui.registry.addButton('customDateButton', {
+          icon: 'insert-time',
+          tooltip: 'Insert Current Date',
+          disabled: true,
+          onAction: function (_) {
+            editor.insertContent(toTimeHtml(new Date()));
+          },
+          onSetup: function (buttonApi) {
+            var editorEventCallback = function (eventApi) {
+              buttonApi.setDisabled(eventApi.element.nodeName.toLowerCase() === 'time');
+            };
+            editor.on('NodeChange', editorEventCallback);
+
+            /* onSetup should always return the unbind handlers */
+            return function (buttonApi) {
+              editor.off('NodeChange', editorEventCallback);
+            };
+          }
+        });
+      },
+      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+    });
   </script>
 </body>
 
