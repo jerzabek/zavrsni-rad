@@ -4,9 +4,10 @@ declare const tinymce: TinyMCE;
 
 const setup = (editor: Editor, url: string): void => {
   editor.ui.registry.addButton('tinymce-bsc-thesis-tinymce-example', {
-    text: 'tinymce-bsc-thesis-tinymce-example button',
+    text: 'Annotate (example)',
     onAction: () => {
-      editor.setContent('<p>content added from tinymce-bsc-thesis-tinymce-example</p>');
+      // An example demonstrating how to insert microdata into selected text programatically
+      editor.selection.setContent('<span itemscope itemtype="https://schema.org/example">' + editor.selection.getContent() + '</span>');
     }
   });
 };
