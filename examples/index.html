@@ -5,77 +5,136 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CKEditor plugin example</title>
+  <title>Text editor plugin examples</title>
 
-  <script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.tiny.cloud/1/wgs4ozbxmxch4gd60n8chlsvqrjoswcmwls5lywd446oqq0u  /tinymce/5/tinymce.min.js"
-    referrerpolicy="origin"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.tiny.cloud/1/wgs4ozbxmxch4gd60n8chlsvqrjoswcmwls5lywd446oqq0u/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 <body>
   <main class="container py-4">
-    <p>Developed by Ivan Jeržabek for 2021./2022. bachelor thesis at University of Zagreb, Faculty of Electrical
-      Engineering and Computing</p>
+    <p>Developed by Ivan Jeržabek for 2021./2022. bachelor thesis at University of Zagreb, Faculty of Electrical Engineering and Computing
+    </p>
     <h1 class="text-center">CKEditor Plugin example</h1>
 
-    <div id="ckeditor-editor" style="min-height: 400px;"></div>
+    <textarea id="ckeditor-editor" style="min-height: 400px;">Hello world</textarea>
 
     <hr>
 
     <h1 class="text-center">TinyMCE Plugin example</h1>
 
     <textarea id="tinymce-editor">Hello, World!</textarea>
+
+    <hr>
+
+    <button class="btn btn-primary" onClick="displayCKEditorSource()">Show CKEditor generated HTML</button>
+    <button class="btn btn-primary" onClick="displayTinyMCESource()">Show TinyMCE generated HTML</button>
+    <br class="my-4">
+    <code id="html-display" class="my-2">
+      // Here you will see the raw HTML produced by the text editors...
+    </code>
   </main>
 
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/ckeditor5/build/ckeditor5-dll.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-editor-classic/build/editor-classic.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-code-block/build/code-block.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-essentials/build/essentials.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-basic-styles/build/basic-styles.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-heading/build/heading.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-autoformat/build/autoformat.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-block-quote/build/block-quote.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-image/build/image.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-link/build/link.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-indent/build/indent.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-media-embed/build/media-embed.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-list/build/list.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/node_modules/@ckeditor/ckeditor5-table/build/table.js"></script>
+  <script src="ckeditor5-bsc-thesis-ckeditor-example/build/bsc-thesis-ckeditor-example.js"></script>
   <script>
+    let ckeditor;
     /* ------------------------- CKEditor 5 ------------------------- */
-    ClassicEditor
-      .create(document.querySelector('#ckeditor-editor'))
+    CKEditor5.editorClassic.ClassicEditor
+      .create(document.querySelector('#ckeditor-editor'), {
+        plugins: [
+          CKEditor5['bscThesisCkeditorExample'].ThesisExamplePlugin,
+          CKEditor5.essentials.Essentials,
+          CKEditor5.autoformat.Autoformat,
+          CKEditor5.blockQuote.BlockQuote,
+          CKEditor5.basicStyles.Bold,
+          CKEditor5.heading.Heading,
+          CKEditor5.image.Image,
+          CKEditor5.image.ImageCaption,
+          CKEditor5.image.ImageStyle,
+          CKEditor5.image.ImageToolbar,
+          CKEditor5.image.ImageUpload,
+          CKEditor5.indent.Indent,
+          CKEditor5.basicStyles.Italic,
+          CKEditor5.link.Link,
+          CKEditor5.list.List,
+          CKEditor5.mediaEmbed.MediaEmbed,
+          CKEditor5.paragraph.Paragraph,
+          CKEditor5.table.Table,
+          CKEditor5.table.TableToolbar,
+          CKEditor5.codeBlock.CodeBlock,
+          CKEditor5.basicStyles.Code,
+          CKEditor5.upload.Base64UploadAdapter
+        ],
+        toolbar: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'link',
+          'code',
+          'bulletedList',
+          'numberedList',
+          '|',
+          'outdent',
+          'indent',
+          '|',
+          'uploadImage',
+          'blockQuote',
+          'insertTable',
+          'mediaEmbed',
+          'codeBlock',
+          '|',
+          'undo',
+          'redo',
+          '|',
+          // `myThesisExampleButton` is an example button provided by the `ThesisExamplePlugin` class.
+          'myThesisExampleButton'
+        ]
+      })
+      .then(newEditor => {
+        ckeditor = newEditor;
+      })
       .catch(error => {
         console.error(error);
       });
-
-
+  </script>
+  <script>
     /* ------------------------- TinyMCE ------------------------- */
     tinymce.init({
       selector: 'textarea#tinymce-editor',
-      toolbar: 'customInsertButton customDateButton',
-      setup: function (editor) {
-        editor.ui.registry.addButton('customInsertButton', {
-          text: 'Enrich text',
-          onAction: function (_) {
-            editor.insertContent('&nbsp;<strong>It\'s my button!</strong>&nbsp;');
-          }
-        });
-
-        var toTimeHtml = function (date) {
-          return '<time datetime="' + date.toString() + '">' + date.toDateString() + '</time>';
-        };
-
-        editor.ui.registry.addButton('customDateButton', {
-          icon: 'insert-time',
-          tooltip: 'Insert Current Date',
-          disabled: true,
-          onAction: function (_) {
-            editor.insertContent(toTimeHtml(new Date()));
-          },
-          onSetup: function (buttonApi) {
-            var editorEventCallback = function (eventApi) {
-              buttonApi.setDisabled(eventApi.element.nodeName.toLowerCase() === 'time');
-            };
-            editor.on('NodeChange', editorEventCallback);
-
-            /* onSetup should always return the unbind handlers */
-            return function (buttonApi) {
-              editor.off('NodeChange', editorEventCallback);
-            };
-          }
-        });
-      },
-      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+      toolbar: 'undo redo | fontselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | codesample action section button | custom_button | tinymce-bsc-thesis-tinymce-example',
+      external_plugins: {
+        'tinymce-bsc-thesis-tinymce-example': '/plugins/tinymce-plugin.min.js'
+      }
     });
+
+    function displayTinyMCESource() {
+      let container = document.getElementById('html-display');
+      let rawHTML = tinymce.activeEditor.getContent();
+
+      container.innerText = rawHTML;
+    }
+
+    function displayCKEditorSource() {
+      let container = document.getElementById('html-display');
+      let rawHTML = ckeditor.getData();
+
+      container.innerText = rawHTML;
+    }
   </script>
 </body>
 
