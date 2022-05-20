@@ -1,7 +1,7 @@
 {
   "name": "@jerzabek/ckeditor5-bsc-thesis-ckeditor-example",
   "version": "0.0.1",
-  "description": "A plugin for CKEditor 5.",
+  "description": "Example plugin for CKEdtior 5. Used in BSc thesis.",
   "keywords": [
     "ckeditor",
     "ckeditor5",

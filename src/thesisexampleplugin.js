@@ -3,9 +3,9 @@ import { ButtonView } from 'ckeditor5/src/ui';
 
 import ckeditor5Icon from '../theme/icons/ckeditor.svg';
 
-export default class MyPlugin extends Plugin {
+export default class ThesisExamplePlugin extends Plugin {
 	static get pluginName() {
-		return 'MyPlugin';
+		return 'ThesisExamplePlugin';
 	}
 
 	init() {
@@ -13,12 +13,12 @@ export default class MyPlugin extends Plugin {
 		const t = editor.t;
 		const model = editor.model;
 
-		// Add the "myPlugin" button to feature components.
-		editor.ui.componentFactory.add( 'myButton', locale => {
+		// Add the "thesisExamplePlugin" button to feature components.
+		editor.ui.componentFactory.add( 'myThesisExampleButton', locale => {
 			const view = new ButtonView( locale );
 
 			view.set( {
-				label: t( 'My plugin' ),
+				label: t( 'My thesis example plugin' ),
 				icon: ckeditor5Icon,
 				tooltip: true,
 				isToggleable: true
@@ -27,7 +27,7 @@ export default class MyPlugin extends Plugin {
 			// Insert a text into the editor after clicking the button.
 			this.listenTo( view, 'execute', () => {
 				model.change( writer => {
-					const textNode = writer.createText( 'Hello CKEditor 5!' );
+					const textNode = writer.createText( 'Hello world! #FER' );
 
 					model.insertContent( textNode );
 				} );
