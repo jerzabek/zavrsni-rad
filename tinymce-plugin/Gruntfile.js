@@ -1,5 +1,8 @@
+const commonjs = require('@rollup/plugin-commonjs')
+const replace = require('@rollup/plugin-replace')
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
+const includePaths = require('rollup-plugin-includepaths')
 const path = require('path');
 const swag = require('@ephox/swag');
 
@@ -8,7 +11,7 @@ module.exports = (grunt) => {
   const BUILD_VERSION = packageData.version + '-' + (process.env.BUILD_NUMBER ? process.env.BUILD_NUMBER : '0');
   const libPluginPath = 'lib/main/ts/Main.js';
   const scratchPluginPath = 'scratch/compiled/plugin.js';
-  const scratchPluginMinPath = 'scratch/compiled/plugin.min.js';
+  const scratchPluginMinPath = 'src/demo/html/plugins/zavrad.min.js';
   const tsDemoSourceFile = path.resolve('src/demo/ts/Demo.ts');
   const jsDemoDestFile = path.resolve('scratch/compiled/demo.js');
 
@@ -16,14 +19,14 @@ module.exports = (grunt) => {
     pkg: packageData,
 
     clean: {
-      dirs: [ 'dist', 'scratch' ]
+      dirs: ['dist', 'scratch']
     },
 
     eslint: {
       options: {
         fix: grunt.option('fix')
       },
-      plugin: [ 'src/**/*.ts' ]
+      plugin: ['src/**/*.ts']
     },
 
     shell: {
@@ -36,11 +39,18 @@ module.exports = (grunt) => {
         format: 'iife',
         onwarn: swag.onwarn,
         plugins: [
-          swag.nodeResolve({
-            basedir: __dirname,
-            prefixes: {}
+          // relative imports in the current configuration cause issues that are fixed with the includePaths, replace and commonjs plugins
+          includePaths({ paths: ["./"] }),
+          replace({
+            'process.env.NODE_ENV': JSON.stringify('production'),
+            'react-dom/client': 'node_modules/react-dom/client',
+            preventAssignment: true
           }),
-          swag.remapImports()
+          swag.nodeResolve({
+            basedir: __dirname
+          }),
+          swag.remapImports(),
+          commonjs()
         ]
       },
       plugin: {
@@ -94,7 +104,7 @@ module.exports = (grunt) => {
     copy: {
       css: {
         files: [
-          { src: [ 'CHANGELOG.txt', 'LICENSE.txt' ], dest: 'dist/zavrad', expand: true }
+          { src: ['CHANGELOG.txt', 'LICENSE.txt'], dest: 'dist/zavrad', expand: true }
         ]
       }
     },
@@ -109,14 +119,14 @@ module.exports = (grunt) => {
         devtool: 'source-map',
 
         resolve: {
-          extensions: [ '.ts', '.js' ]
+          extensions: ['.ts', '.js']
         },
 
         module: {
           rules: [
             {
               test: /\.js$/,
-              use: [ 'source-map-loader' ],
+              use: ['source-map-loader'],
               enforce: 'pre'
             },
             {
@@ -134,7 +144,7 @@ module.exports = (grunt) => {
           ]
         },
 
-        plugins: [ new LiveReloadPlugin(), new CheckerPlugin() ],
+        plugins: [new LiveReloadPlugin(), new CheckerPlugin()],
 
         output: {
           filename: path.basename(jsDemoDestFile),

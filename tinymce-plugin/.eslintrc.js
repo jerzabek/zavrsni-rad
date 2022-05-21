@@ -1,11 +1,14 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint'
+  rules: {},
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      plugins: [
+        '@typescript-eslint',
+      ],
+      extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+      parser: '@typescript-eslint/parser'
+    },
   ],
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended'
-  ],
-  rules: {}
 };
