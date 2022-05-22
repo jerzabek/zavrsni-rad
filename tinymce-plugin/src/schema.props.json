@@ -1,0 +1,17 @@
+[
+  {
+    "value": "https://schema.org/givenName",
+    "label": "givenName",
+    "comment": "Given name. In the U.S., the first name of a Person."
+  },
+  {
+    "value": "https://schema.org/jobTitle",
+    "label": "jobTitle",
+    "comment": "The job title of the person (for example, Financial Manager)."
+  },
+  {
+    "value": "https://schema.org/review",
+    "label": "review",
+    "comment": "A review of the item."
+  }
+]

@@ -1,0 +1,6 @@
+import { __makeTemplateObject } from "tslib";
+import styled from 'styled-components';
+export var Modal = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n"], ["\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n"])));
+export var ModalContent = styled.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  max-width: 90vw;\n  width: 60rem;\n  padding: 2rem;\n  margin: 0 auto;\n\n  background-color: #fff;\n  background-radius: 10px;\n\n  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;\n"], ["\n  max-width: 90vw;\n  width: 60rem;\n  padding: 2rem;\n  margin: 0 auto;\n\n  background-color: #fff;\n  background-radius: 10px;\n\n  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;\n"])));
+var templateObject_1, templateObject_2;
+//# sourceMappingURL=Modal.js.map

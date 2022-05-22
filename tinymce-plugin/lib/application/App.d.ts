@@ -1,2 +1,5 @@
-export declare function setupReactApp(resolveFunction: (whatever: string) => void): void;
-export declare function unmountReactApp(): void;
+import { ResolveFunctionType, RichNode } from 'src/model/RichNode';
+export declare function mountReactTypeApp(resolveFunction: ResolveFunctionType, rejectFunction: () => void, node: RichNode): void;
+export declare function mountReactPropertyApp(resolveFunction: ResolveFunctionType, rejectFunction: () => void, node: RichNode): void;
+export declare function unmountReactTypeApp(): void;
+export declare function unmountReactPropertyApp(): void;

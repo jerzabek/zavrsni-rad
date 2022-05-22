@@ -3,6 +3,7 @@ const replace = require('@rollup/plugin-replace')
 const { CheckerPlugin } = require('awesome-typescript-loader');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const includePaths = require('rollup-plugin-includepaths')
+const json = require('@rollup/plugin-json')
 const path = require('path');
 const swag = require('@ephox/swag');
 
@@ -39,6 +40,9 @@ module.exports = (grunt) => {
         format: 'iife',
         onwarn: swag.onwarn,
         plugins: [
+          json({
+            namedExports: true
+          }),
           // relative imports in the current configuration cause issues that are fixed with the includePaths, replace and commonjs plugins
           includePaths({ paths: ["./"] }),
           replace({

@@ -1,0 +1,17 @@
+[
+    {
+        "value": "https://schema.org/Person",
+        "label": "Person",
+        "comment": "A person (alive, dead, undead, or fictional)."
+    },
+    {
+        "value": "https://schema.org/Pond",
+        "label": "Pond",
+        "comment": "A pond."
+    },
+    {
+        "value": "https://schema.org/Product",
+        "label": "Product",
+        "comment": "Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."
+    }
+]

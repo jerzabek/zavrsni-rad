@@ -1,0 +1,12 @@
+import { __makeTemplateObject } from "tslib";
+import styled from "styled-components";
+export var Button = styled.button(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: inline-block;\n  outline: 0;\n  \n  border: none;\n  \n  padding: 0 56px;\n  height: 38px;\n  \n  line-height: 38px;\n  border-radius: 7px;\n\n  background-color: #0070f3;\n  color: white;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n  ", "\n"], ["\n  display: inline-block;\n  outline: 0;\n  \n  border: none;\n  \n  padding: 0 56px;\n  height: 38px;\n  \n  line-height: 38px;\n  border-radius: 7px;\n\n  background-color: #0070f3;\n  color: white;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n  ", "\n"])), function (_a) {
+    var _b = _a.disabled, disabled = _b === void 0 ? false : _b;
+    return disabled ? 'opacity: 0.6;' : "\n    cursor: pointer;\n\n    :hover{\n      background: rgba(0,118,255,0.9);\n      box-shadow: 0 6px 20px rgb(0 118 255 / 23%);\n    }\n  ";
+});
+export var OutlineButton = styled.button(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: inline-block;\n  outline: 0;\n\n  border: none;\n\n  padding: 0 56px;\n  height: 38px;\n\n  line-height: 38px;\n  border-radius: 7px;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  background: #fff;\n  color: #696969;\n\n  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n\n  ", "\n"], ["\n  display: inline-block;\n  outline: 0;\n\n  border: none;\n\n  padding: 0 56px;\n  height: 38px;\n\n  line-height: 38px;\n  border-radius: 7px;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  background: #fff;\n  color: #696969;\n\n  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n\n  ", "\n"])), function (_a) {
+    var _b = _a.disabled, disabled = _b === void 0 ? false : _b;
+    return disabled ? 'opacity: 0.6;' : "\n    cursor: pointer;\n\n    :hover{\n      background: rgba(255,255,255,0.9);\n      box-shadow: 0 6px 20px rgb(93 93 93 / 23%);\n    }\n  ";
+});
+var templateObject_1, templateObject_2;
+//# sourceMappingURL=Button.js.map

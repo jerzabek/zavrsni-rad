@@ -5,6 +5,7 @@
     "target": "es5",
     "module": "es2015",
     "importHelpers": true,
+    "resolveJsonModule": true,
     "lib": ["es2015", "dom"],
     "declaration": true,
     "noUnusedLocals": true,
