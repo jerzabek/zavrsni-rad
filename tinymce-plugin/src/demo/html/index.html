@@ -14,7 +14,7 @@
 
   <main class="container py-4">
     <textarea id="tinymce">
-      <p>Lorem ip<span itemscope="true" itemtype="https://schema.org/Person" class="zavrad-annotation">sum dolor sit</span> amet.</p>
+      <p>Lorem ip<span itemscope="true" itemtype="https://schema.org/Person">sum dolor sit</span> amet.</p>
     </textarea>
   </main>
 
@@ -25,7 +25,7 @@
       selector: 'textarea#tinymce',
       toolbar: 'undo redo | fontselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | codesample action section button | custom_button | zavrad_thing zavrad_property',
       extended_valid_elements: 'span[itemscope|itemtype|itemprop|class]', // Important!
-      content_style: '.zavrad-annotation { background-color: #ff000010; border: 1px solid #00000020 }',
+      content_style: '[itemscope], [itemtype], [itemprop] { background-color: #ff000010; border: 1px solid #00000020 }',
       external_plugins: {
         'zavrad': '/plugins/zavrad.min.js'
       }

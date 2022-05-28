@@ -11,17 +11,25 @@ function isProped(node) {
     return node.hasAttribute('itemprop');
 }
 function prepareNewNode(nodeInfo) {
-    var newNode = document.createElement('span');
+    var node;
+    if (typeof nodeInfo.content === 'object') {
+        node = nodeInfo.content;
+        console.log('old node', node);
+    }
+    else {
+        node = document.createElement('span');
+        console.log('new node', node);
+    }
     if (nodeInfo.itemscope) {
-        newNode.setAttribute('itemscope', 'true');
+        node.setAttribute('itemscope', 'true');
     }
     if (nodeInfo.itemtype) {
-        newNode.setAttribute('itemtype', nodeInfo.itemtype);
+        node.setAttribute('itemtype', nodeInfo.itemtype);
     }
     if (nodeInfo.itemprop) {
-        newNode.setAttribute('itemprop', nodeInfo.itemprop);
+        node.setAttribute('itemprop', nodeInfo.itemprop);
     }
-    return newNode;
+    return node;
 }
 var setup = function (editor) {
     editor.ui.registry.addButton('zavrad_thing', {
@@ -58,14 +66,11 @@ var setup = function (editor) {
                     }
                     mountReactTypeApp(resolve, reject, nodeInfo);
                 }).then(function (result) {
-                    if (typeof (result === null || result === void 0 ? void 0 : result.content) !== 'string') {
-                        enabledThingView = false;
-                        return;
-                    }
                     var newNode = prepareNewNode(result);
-                    newNode.innerHTML = editor.selection.getContent();
-                    newNode.classList.add('zavrad-annotation');
-                    editor.selection.setNode(newNode);
+                    if (typeof (result === null || result === void 0 ? void 0 : result.content) === 'string') {
+                        newNode.innerHTML = editor.selection.getContent();
+                        editor.selection.setNode(newNode);
+                    }
                 }).finally(function () {
                     unmountReactTypeApp();
                     enabledThingView = false;
@@ -111,14 +116,11 @@ var setup = function (editor) {
                     }
                     mountReactPropertyApp(resolve, reject, nodeInfo);
                 }).then(function (result) {
-                    if (typeof (result === null || result === void 0 ? void 0 : result.content) !== 'string') {
-                        enabledPropertyView = false;
-                        return;
-                    }
                     var newNode = prepareNewNode(result);
-                    newNode.innerHTML = editor.selection.getContent();
-                    newNode.classList.add('zavrad-annotation');
-                    editor.selection.setNode(newNode);
+                    if (typeof (result === null || result === void 0 ? void 0 : result.content) === 'string') {
+                        newNode.innerHTML = editor.selection.getContent();
+                        editor.selection.setNode(newNode);
+                    }
                 }).finally(function () {
                     unmountReactPropertyApp();
                     enabledPropertyView = false;

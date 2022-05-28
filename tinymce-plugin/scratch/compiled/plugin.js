@@ -9533,15 +9533,15 @@
 	  qe[e] = qe(e);
 	});
 
-	var Modal = qe.div(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(['\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n'], ['\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n'])));
+	var Modal = qe.div(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(['\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n'], ['\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n'])));
 	var ModalContent = qe.div(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(['\n  max-width: 90vw;\n  width: 60rem;\n  padding: 2rem;\n  margin: 0 auto;\n\n  background-color: #fff;\n  background-radius: 10px;\n\n  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;\n'], ['\n  max-width: 90vw;\n  width: 60rem;\n  padding: 2rem;\n  margin: 0 auto;\n\n  background-color: #fff;\n  background-radius: 10px;\n\n  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;\n'])));
-	var templateObject_1$5, templateObject_2$2;
+	var templateObject_1$4, templateObject_2$2;
 
 	var defaultValue = {};
 	var AnnotationContext = react.exports.createContext(defaultValue);
 	var AnnotationContextProvider = AnnotationContext.Provider;
 
-	var Button = qe.button(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject([
+	var Button = qe.button(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject([
 	  '\n  display: inline-block;\n  outline: 0;\n  \n  border: none;\n  \n  padding: 0 56px;\n  height: 38px;\n  \n  line-height: 38px;\n  border-radius: 7px;\n\n  background-color: #0070f3;\n  color: white;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n  ',
 	  '\n'
 	], [
@@ -9561,9 +9561,9 @@
 	  var _b = _a.disabled, disabled = _b === void 0 ? false : _b;
 	  return disabled ? 'opacity: 0.6;' : '\n    cursor: pointer;\n\n    :hover{\n      background: rgba(255,255,255,0.9);\n      box-shadow: 0 6px 20px rgb(93 93 93 / 23%);\n    }\n  ';
 	});
-	var templateObject_1$4, templateObject_2$1;
+	var templateObject_1$3, templateObject_2$1;
 
-	var OutlineButtonMargin = qe(OutlineButton)(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(['\nmargin-right: 1rem;\n'], ['\nmargin-right: 1rem;\n'])));
+	var OutlineButtonMargin = qe(OutlineButton)(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(['\nmargin-right: 1rem;\n'], ['\nmargin-right: 1rem;\n'])));
 	var ButtonContainer = qe.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(['\ntext-align: end;\n'], ['\ntext-align: end;\n'])));
 	function UserControls(_a) {
 	  var cancelAction = _a.cancelAction, applyAction = _a.applyAction, _b = _a.applyText, applyText = _b === void 0 ? 'Annotate' : _b, applyDisabled = _a.applyDisabled;
@@ -9572,7 +9572,25 @@
 	    onClick: applyAction
 	  }, applyText));
 	}
-	var templateObject_1$3, templateObject_2;
+	var templateObject_1$2, templateObject_2;
+
+	var SchemaTypes$1 = [
+		{
+			value: "https://schema.org/Person",
+			label: "Person",
+			comment: "A person (alive, dead, undead, or fictional)."
+		},
+		{
+			value: "https://schema.org/Pond",
+			label: "Pond",
+			comment: "A pond."
+		},
+		{
+			value: "https://schema.org/Product",
+			label: "Product",
+			comment: "Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."
+		}
+	];
 
 	function _extends$1() {
 	  _extends$1 = Object.assign || function (target) {
@@ -14344,26 +14362,8 @@
 	  return NonceProvider;
 	})(react.exports.Component);
 
-	var SchemaTypes$1 = [
-		{
-			value: "https://schema.org/Person",
-			label: "Person",
-			comment: "A person (alive, dead, undead, or fictional)."
-		},
-		{
-			value: "https://schema.org/Pond",
-			label: "Pond",
-			comment: "A pond."
-		},
-		{
-			value: "https://schema.org/Product",
-			label: "Product",
-			comment: "Any offered product or service. For example: a pair of shoes; a concert ticket; the rental of a car; a haircut; or an episode of a TV show streamed online."
-		}
-	];
-
-	var SmallText = qe.p(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(['\n  font-size: 0.8em;\n  opacity: 0.7;\n  margin-bottom: 0;\n'], ['\n  font-size: 0.8em;\n  opacity: 0.7;\n  margin-bottom: 0;\n'])));
-	var templateObject_1$2;
+	var SmallText = qe.p(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(['\n  font-size: 0.8em;\n  opacity: 0.7;\n  margin-bottom: 0;\n'], ['\n  font-size: 0.8em;\n  opacity: 0.7;\n  margin-bottom: 0;\n'])));
+	var templateObject_1$1;
 
 	/**
 	 * A set of all the parents currently being observe. This is the only non weak
@@ -14858,14 +14858,28 @@
 	    }
 	}
 
-	var SelectionContainer$1 = qe.div(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(['\n  margin: 2em 0;\n'], ['\n  margin: 2em 0;\n'])));
-	function AnnotateType() {
-	  var _a = react.exports.useContext(AnnotationContext), node = _a.node, resolve = _a.resolve, reject = _a.reject;
-	  var _b = react.exports.useState(), selection = _b[0], setSelection = _b[1];
+	var SelectionContainer = qe.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\n  margin: 2em 0;\n'], ['\n  margin: 2em 0;\n'])));
+	function Selector(_a) {
+	  var selection = _a.selection, setSelection = _a.setSelection, options = _a.options, name = _a.name, description = _a.description;
 	  var parent = react.exports.useRef(null);
 	  react.exports.useEffect(function () {
 	    parent.current && autoAnimate(parent.current);
 	  }, [parent]);
+	  return React.createElement('div', { ref: parent }, React.createElement(SelectionContainer, null, React.createElement(StateManagedSelect, {
+	    classNamePrefix: 'select',
+	    name: name,
+	    onChange: function (selection) {
+	      return setSelection(selection);
+	    },
+	    value: selection,
+	    options: options
+	  })), selection && React.createElement(React.Fragment, null, React.createElement(SmallText, null, description), React.createElement('p', null, selection.comment)));
+	}
+	var templateObject_1;
+
+	function AnnotateType() {
+	  var _a = react.exports.useContext(AnnotationContext), node = _a.node, resolve = _a.resolve, reject = _a.reject;
+	  var _b = react.exports.useState(), selection = _b[0], setSelection = _b[1];
 	  function applyAnnotation() {
 	    if (!selection)
 	      return;
@@ -14875,21 +14889,18 @@
 	    });
 	    resolve(resultNode);
 	  }
-	  return React.createElement('div', { ref: parent }, React.createElement(SelectionContainer$1, null, React.createElement(StateManagedSelect, {
-	    classNamePrefix: 'select',
+	  return React.createElement(React.Fragment, null, React.createElement(Selector, {
+	    selection: selection,
+	    setSelection: setSelection,
+	    options: SchemaTypes$1,
 	    name: 'itemtype',
-	    onChange: function (selection) {
-	      return setSelection(selection);
-	    },
-	    value: selection,
-	    options: SchemaTypes$1
-	  })), selection && React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Type description:'), React.createElement('p', null, selection.comment)), React.createElement(UserControls, {
+	    description: 'Type description:'
+	  }), React.createElement(UserControls, {
 	    applyDisabled: !selection,
 	    applyAction: applyAnnotation,
 	    cancelAction: reject
 	  }));
 	}
-	var templateObject_1$1;
 
 	function TypeUI() {
 	  var node = react.exports.useContext(AnnotationContext).node;
@@ -14906,29 +14917,74 @@
 	}
 	function ExistingAnnotation$1() {
 	  var _a = react.exports.useContext(AnnotationContext), node = _a.node, resolve = _a.resolve, reject = _a.reject;
+	  var _b = react.exports.useState(node), nodeValue = _b[0], setNodeValue = _b[1];
 	  var schemaType = react.exports.useMemo(function () {
-	    return findSchemaType$1(node.itemtype);
-	  }, [node.itemtype]);
-	  var _b = react.exports.useState([]), children = _b[0], setChildren = _b[1];
-	  var nodeContent = node.content;
+	    return findSchemaType$1(nodeValue.itemtype);
+	  }, [nodeValue.itemtype]);
+	  var _c = react.exports.useState([]), childProperties = _c[0], setChildProperties = _c[1];
+	  var parent = react.exports.useRef(null);
+	  react.exports.useEffect(function () {
+	    parent.current && autoAnimate(parent.current);
+	  }, [parent]);
+	  var _d = react.exports.useState(false), editMode = _d[0], setEditMode = _d[1];
+	  var _e = react.exports.useState(), editSelection = _e[0], setEditSelection = _e[1];
+	  var _f = react.exports.useState(false), isNodeEdited = _f[0], setIsNodeEdited = _f[1];
+	  var nodeContent = nodeValue.content;
 	  react.exports.useEffect(function () {
 	    var children = [];
 	    nodeContent.querySelectorAll('span[itemprop]').forEach(function (elem) {
 	      return children.push(elem);
 	    });
-	    setChildren(children);
+	    setChildProperties(children);
 	  }, []);
-	  function applyAnnotation() {
-	    resolve(node);
+	  function editAnnotation() {
+	    setEditMode(true);
 	  }
-	  return React.createElement('div', null, React.createElement(SmallText, null, 'Type: ', node.itemscope ? node.itemtype : '-'), React.createElement('p', null, nodeContent.innerText), React.createElement('p', null, schemaType.comment), (children === null || children === void 0 ? void 0 : children.length) > 0 && React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Properties:'), children.map(function (elem, index) {
+	  function cancelEdit() {
+	    setEditMode(false);
+	  }
+	  function finishEditing() {
+	    setEditMode(false);
+	    if (!editSelection)
+	      return;
+	    if (editSelection.value === nodeValue.itemtype)
+	      return;
+	    setNodeValue(function (node) {
+	      return __assign(__assign({}, node), {
+	        itemscope: true,
+	        itemtype: editSelection.value
+	      });
+	    });
+	    setIsNodeEdited(true);
+	  }
+	  function saveEdit() {
+	    resolve(nodeValue);
+	  }
+	  if (editMode) {
+	    return React.createElement(React.Fragment, null, React.createElement('p', null, 'Editing current type: ', nodeValue.itemscope ? nodeValue.itemtype : '-'), React.createElement(SmallText, null, nodeContent.innerText), React.createElement(Selector, {
+	      selection: editSelection,
+	      setSelection: setEditSelection,
+	      options: SchemaTypes$1,
+	      name: 'itemtype',
+	      description: 'Type description:'
+	    }), React.createElement(UserControls, {
+	      applyAction: finishEditing,
+	      applyText: 'Save',
+	      cancelAction: cancelEdit
+	    }));
+	  }
+	  return React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Type: ', nodeValue.itemscope ? nodeValue.itemtype : '-'), React.createElement('p', null, nodeContent.innerText), React.createElement('p', null, schemaType.comment), (childProperties === null || childProperties === void 0 ? void 0 : childProperties.length) > 0 && React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Properties:'), childProperties.map(function (elem, index) {
 	    return React.createElement('p', { key: index }, React.createElement('a', {
 	      href: elem.getAttribute('itemprop'),
 	      target: '_blank'
 	    }, elem.getAttribute('itemprop')), ': ', elem.innerHTML);
-	  })), React.createElement(UserControls, {
-	    applyAction: applyAnnotation,
+	  })), isNodeEdited ? React.createElement(UserControls, {
+	    applyAction: saveEdit,
 	    applyText: 'Save',
+	    cancelAction: reject
+	  }) : React.createElement(UserControls, {
+	    applyAction: editAnnotation,
+	    applyText: 'Edit',
 	    cancelAction: reject
 	  }));
 	}
@@ -14955,32 +15011,27 @@
 		}
 	];
 
-	var SelectionContainer = qe.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\n  margin: 2em 0;\n'], ['\n  margin: 2em 0;\n'])));
 	function AnnotateProperty() {
 	  var _a = react.exports.useContext(AnnotationContext), node = _a.node, resolve = _a.resolve, reject = _a.reject;
 	  var _b = react.exports.useState(), selection = _b[0], setSelection = _b[1];
-	  var parent = react.exports.useRef(null);
-	  react.exports.useEffect(function () {
-	    parent.current && autoAnimate(parent.current);
-	  }, [parent]);
 	  function applyAnnotation() {
+	    if (!selection)
+	      return;
 	    var resultNode = __assign(__assign({}, node), { itemprop: selection.value });
 	    resolve(resultNode);
 	  }
-	  return React.createElement('div', { ref: parent }, React.createElement(SelectionContainer, null, React.createElement(StateManagedSelect, {
-	    classNamePrefix: 'select',
+	  return React.createElement(React.Fragment, null, React.createElement(Selector, {
+	    selection: selection,
+	    setSelection: setSelection,
+	    options: SchemaTypes,
 	    name: 'itemprop',
-	    onChange: function (selection) {
-	      return setSelection(selection);
-	    },
-	    value: selection,
-	    options: SchemaTypes
-	  })), selection && React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Property description:'), React.createElement('p', null, selection.comment)), React.createElement(UserControls, {
+	    description: 'Property description:'
+	  }), React.createElement(UserControls, {
+	    applyDisabled: !selection,
 	    applyAction: applyAnnotation,
 	    cancelAction: reject
 	  }));
 	}
-	var templateObject_1;
 
 	function PropertyUI() {
 	  var node = react.exports.useContext(AnnotationContext).node;
@@ -14997,16 +15048,58 @@
 	}
 	function ExistingAnnotation() {
 	  var _a = react.exports.useContext(AnnotationContext), node = _a.node, resolve = _a.resolve, reject = _a.reject;
+	  var _b = react.exports.useState(node), nodeValue = _b[0], setNodeValue = _b[1];
 	  var schemaType = react.exports.useMemo(function () {
-	    return findSchemaType(node.itemprop);
-	  }, [node.itemprop]);
-	  var nodeContent = node.content;
-	  function applyAnnotation() {
-	    resolve(node);
+	    return findSchemaType(nodeValue.itemprop);
+	  }, [nodeValue.itemprop]);
+	  var parent = react.exports.useRef(null);
+	  react.exports.useEffect(function () {
+	    parent.current && autoAnimate(parent.current);
+	  }, [parent]);
+	  var _c = react.exports.useState(false), editMode = _c[0], setEditMode = _c[1];
+	  var _d = react.exports.useState(), editSelection = _d[0], setEditSelection = _d[1];
+	  var _e = react.exports.useState(false), isNodeEdited = _e[0], setIsNodeEdited = _e[1];
+	  var nodeContent = nodeValue.content;
+	  function editAnnotation() {
+	    setEditMode(true);
 	  }
-	  return React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Property: ', node.itemprop, ' ', node.itemscope ? React.createElement('i', null, '(also ', node.itemtype, ')') : ''), React.createElement('p', null, nodeContent.innerText), React.createElement('p', null, schemaType.comment), React.createElement(UserControls, {
-	    applyAction: applyAnnotation,
+	  function cancelEdit() {
+	    setEditMode(false);
+	  }
+	  function finishEditing() {
+	    setEditMode(false);
+	    if (!editSelection)
+	      return;
+	    if (editSelection.value === nodeValue.itemprop)
+	      return;
+	    setNodeValue(function (node) {
+	      return __assign(__assign({}, node), { itemprop: editSelection.value });
+	    });
+	    setIsNodeEdited(true);
+	  }
+	  function saveEdit() {
+	    resolve(nodeValue);
+	  }
+	  if (editMode) {
+	    return React.createElement(React.Fragment, null, React.createElement('p', null, 'Editing current type: ', nodeValue.itemprop), React.createElement(SmallText, null, nodeContent.innerText), React.createElement(Selector, {
+	      selection: editSelection,
+	      setSelection: setEditSelection,
+	      options: SchemaTypes,
+	      name: 'itemprop',
+	      description: 'Property description:'
+	    }), React.createElement(UserControls, {
+	      applyAction: finishEditing,
+	      applyText: 'Save',
+	      cancelAction: cancelEdit
+	    }));
+	  }
+	  return React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Property: ', nodeValue.itemprop, ' ', nodeValue.itemscope ? React.createElement('i', null, '(also ', nodeValue.itemtype, ')') : ''), React.createElement('p', null, nodeContent.innerText), React.createElement('p', null, schemaType.comment), isNodeEdited ? React.createElement(UserControls, {
+	    applyAction: saveEdit,
 	    applyText: 'Save',
+	    cancelAction: reject
+	  }) : React.createElement(UserControls, {
+	    applyAction: editAnnotation,
+	    applyText: 'Edit',
 	    cancelAction: reject
 	  }));
 	}
@@ -15075,17 +15168,24 @@
 	  return node.hasAttribute('itemprop');
 	}
 	function prepareNewNode(nodeInfo) {
-	  var newNode = document.createElement('span');
+	  var node;
+	  if (typeof nodeInfo.content === 'object') {
+	    node = nodeInfo.content;
+	    console.log('old node', node);
+	  } else {
+	    node = document.createElement('span');
+	    console.log('new node', node);
+	  }
 	  if (nodeInfo.itemscope) {
-	    newNode.setAttribute('itemscope', 'true');
+	    node.setAttribute('itemscope', 'true');
 	  }
 	  if (nodeInfo.itemtype) {
-	    newNode.setAttribute('itemtype', nodeInfo.itemtype);
+	    node.setAttribute('itemtype', nodeInfo.itemtype);
 	  }
 	  if (nodeInfo.itemprop) {
-	    newNode.setAttribute('itemprop', nodeInfo.itemprop);
+	    node.setAttribute('itemprop', nodeInfo.itemprop);
 	  }
-	  return newNode;
+	  return node;
 	}
 	var setup = function (editor) {
 	  editor.ui.registry.addButton('zavrad_thing', {
@@ -15117,14 +15217,11 @@
 	          }
 	          mountReactTypeApp(resolve, reject, nodeInfo);
 	        }).then(function (result) {
-	          if (typeof (result === null || result === void 0 ? void 0 : result.content) !== 'string') {
-	            enabledThingView = false;
-	            return;
-	          }
 	          var newNode = prepareNewNode(result);
-	          newNode.innerHTML = editor.selection.getContent();
-	          newNode.classList.add('zavrad-annotation');
-	          editor.selection.setNode(newNode);
+	          if (typeof (result === null || result === void 0 ? void 0 : result.content) === 'string') {
+	            newNode.innerHTML = editor.selection.getContent();
+	            editor.selection.setNode(newNode);
+	          }
 	        }).finally(function () {
 	          unmountReactTypeApp();
 	          enabledThingView = false;
@@ -15164,14 +15261,11 @@
 	          }
 	          mountReactPropertyApp(resolve, reject, nodeInfo);
 	        }).then(function (result) {
-	          if (typeof (result === null || result === void 0 ? void 0 : result.content) !== 'string') {
-	            enabledPropertyView = false;
-	            return;
-	          }
 	          var newNode = prepareNewNode(result);
-	          newNode.innerHTML = editor.selection.getContent();
-	          newNode.classList.add('zavrad-annotation');
-	          editor.selection.setNode(newNode);
+	          if (typeof (result === null || result === void 0 ? void 0 : result.content) === 'string') {
+	            newNode.innerHTML = editor.selection.getContent();
+	            editor.selection.setNode(newNode);
+	          }
 	        }).finally(function () {
 	          unmountReactPropertyApp();
 	          enabledPropertyView = false;

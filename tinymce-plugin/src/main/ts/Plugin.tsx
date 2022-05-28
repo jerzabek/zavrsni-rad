@@ -19,21 +19,29 @@ function isProped(node: Element): boolean {
 }
 
 function prepareNewNode(nodeInfo: RichNode): Element {
-  const newNode = document.createElement('span')
+  let node
+
+  if (typeof nodeInfo.content === 'object') {
+    node = nodeInfo.content
+    console.log('old node', node)
+  } else {
+    node = document.createElement('span')
+    console.log('new node', node)
+  }
 
   if (nodeInfo.itemscope) {
-    newNode.setAttribute('itemscope', 'true')
+    node.setAttribute('itemscope', 'true')
   }
 
   if (nodeInfo.itemtype) {
-    newNode.setAttribute('itemtype', nodeInfo.itemtype)
+    node.setAttribute('itemtype', nodeInfo.itemtype)
   }
 
   if (nodeInfo.itemprop) {
-    newNode.setAttribute('itemprop', nodeInfo.itemprop)
+    node.setAttribute('itemprop', nodeInfo.itemprop)
   }
 
-  return newNode;
+  return node;
 }
 
 const setup = (editor: Editor): void => {
@@ -79,16 +87,12 @@ const setup = (editor: Editor): void => {
 
           mountReactTypeApp(resolve, reject, nodeInfo)
         }).then((result: RichNode) => {
-          if (typeof result?.content !== 'string') {
-            enabledThingView = false
-            return
-          }
-
           const newNode = prepareNewNode(result)
 
-          newNode.innerHTML = editor.selection.getContent()
-          newNode.classList.add('zavrad-annotation')
-          editor.selection.setNode(newNode);
+          if (typeof result?.content === 'string') {
+            newNode.innerHTML = editor.selection.getContent()
+            editor.selection.setNode(newNode);
+          }
         }).finally(() => {
           unmountReactTypeApp()
           enabledThingView = false;
@@ -142,16 +146,12 @@ const setup = (editor: Editor): void => {
 
           mountReactPropertyApp(resolve, reject, nodeInfo)
         }).then((result: RichNode) => {
-          if (typeof result?.content !== 'string') {
-            enabledPropertyView = false
-            return
-          }
-
           const newNode = prepareNewNode(result)
 
-          newNode.innerHTML = editor.selection.getContent()
-          newNode.classList.add('zavrad-annotation')
-          editor.selection.setNode(newNode);
+          if (typeof result?.content === 'string') {
+            newNode.innerHTML = editor.selection.getContent()
+            editor.selection.setNode(newNode);
+          }
         }).finally(() => {
           unmountReactPropertyApp()
           enabledPropertyView = false;

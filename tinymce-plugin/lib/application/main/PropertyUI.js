@@ -1,10 +1,13 @@
-import React, { useContext, useMemo } from 'react';
+import { __assign } from "tslib";
+import React, { useContext, useState, useEffect, useRef, useMemo } from 'react';
 import { Modal, ModalContent } from '../components/Modal';
 import { AnnotationContext } from './AnnotationContext';
 import UserControls from './modules/UserControls';
 import AnnotateProperty from './modules/AnnotateProperty';
 import { SmallText } from '../components/Typography';
 import SchemaTypes from '../../schema.props.json';
+import autoAnimate from '@formkit/auto-animate';
+import Selector from './modules/Selector';
 export default function PropertyUI() {
     var node = useContext(AnnotationContext).node;
     if (typeof node.content === 'object') {
@@ -26,23 +29,55 @@ function findSchemaType(id) {
 }
 function ExistingAnnotation() {
     var _a = useContext(AnnotationContext), node = _a.node, resolve = _a.resolve, reject = _a.reject;
-    var schemaType = useMemo(function () { return findSchemaType(node.itemprop); }, [node.itemprop]);
-    var nodeContent = node.content;
-    function applyAnnotation() {
-        resolve(node);
+    var _b = useState(node), nodeValue = _b[0], setNodeValue = _b[1];
+    var schemaType = useMemo(function () { return findSchemaType(nodeValue.itemprop); }, [nodeValue.itemprop]);
+    var parent = useRef(null);
+    useEffect(function () {
+        parent.current && autoAnimate(parent.current);
+    }, [parent]);
+    var _c = useState(false), editMode = _c[0], setEditMode = _c[1];
+    var _d = useState(), editSelection = _d[0], setEditSelection = _d[1];
+    var _e = useState(false), isNodeEdited = _e[0], setIsNodeEdited = _e[1];
+    var nodeContent = nodeValue.content;
+    function editAnnotation() {
+        setEditMode(true);
+    }
+    function cancelEdit() {
+        setEditMode(false);
+    }
+    function finishEditing() {
+        setEditMode(false);
+        if (!editSelection)
+            return;
+        if (editSelection.value === nodeValue.itemprop)
+            return;
+        setNodeValue(function (node) { return __assign(__assign({}, node), { itemprop: editSelection.value }); });
+        setIsNodeEdited(true);
+    }
+    function saveEdit() {
+        resolve(nodeValue);
+    }
+    if (editMode) {
+        return (React.createElement(React.Fragment, null,
+            React.createElement("p", null,
+                "Editing current type: ",
+                nodeValue.itemprop),
+            React.createElement(SmallText, null, nodeContent.innerText),
+            React.createElement(Selector, { selection: editSelection, setSelection: setEditSelection, options: SchemaTypes, name: 'itemprop', description: 'Property description:' }),
+            React.createElement(UserControls, { applyAction: finishEditing, applyText: 'Save', cancelAction: cancelEdit })));
     }
     return (React.createElement(React.Fragment, null,
         React.createElement(SmallText, null,
             "Property: ",
-            node.itemprop,
+            nodeValue.itemprop,
             " ",
-            node.itemscope ? React.createElement("i", null,
+            nodeValue.itemscope ? React.createElement("i", null,
                 "(also ",
-                node.itemtype,
+                nodeValue.itemtype,
                 ")") : ''),
         React.createElement("p", null, nodeContent.innerText),
         React.createElement("p", null, schemaType.comment),
-        React.createElement(UserControls, { applyAction: applyAnnotation, applyText: 'Save', cancelAction: reject })));
+        isNodeEdited ? (React.createElement(UserControls, { applyAction: saveEdit, applyText: 'Save', cancelAction: reject })) : (React.createElement(UserControls, { applyAction: editAnnotation, applyText: 'Edit', cancelAction: reject }))));
 }
 function NewAnnotation() {
     var node = useContext(AnnotationContext).node;
