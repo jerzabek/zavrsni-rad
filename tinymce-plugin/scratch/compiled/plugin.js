@@ -8133,6 +8133,17 @@
 	  };
 	  return __assign.apply(this, arguments);
 	};
+	function __spreadArray(to, from, pack) {
+	  if (pack || arguments.length === 2)
+	    for (var i = 0, l = from.length, ar; i < l; i++) {
+	      if (ar || !(i in from)) {
+	        if (!ar)
+	          ar = Array.prototype.slice.call(from, 0, i);
+	        ar[i] = from[i];
+	      }
+	    }
+	  return to.concat(ar || Array.prototype.slice.call(from));
+	}
 	function __makeTemplateObject(cooked, raw) {
 	  if (Object.defineProperty) {
 	    Object.defineProperty(cooked, 'raw', { value: raw });
@@ -9533,15 +9544,15 @@
 	  qe[e] = qe(e);
 	});
 
-	var Modal = qe.div(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(['\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n'], ['\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n'])));
-	var ModalContent = qe.div(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(['\n  max-width: 90vw;\n  width: 60rem;\n  padding: 2rem;\n  margin: 0 auto;\n\n  background-color: #fff;\n  background-radius: 10px;\n\n  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;\n'], ['\n  max-width: 90vw;\n  width: 60rem;\n  padding: 2rem;\n  margin: 0 auto;\n\n  background-color: #fff;\n  background-radius: 10px;\n\n  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;\n'])));
-	var templateObject_1$4, templateObject_2$2;
+	var Modal = qe.div(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(['\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n'], ['\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1000;\n  padding: 50px;\n\n  width: 100%;\n  height: 100%;\n  overflow-y: auto;\n'])));
+	var ModalContent = qe.div(templateObject_2$3 || (templateObject_2$3 = __makeTemplateObject(['\n  max-width: 90vw;\n  width: 60rem;\n  padding: 2rem;\n  margin: 0 auto;\n\n  background-color: #fff;\n  background-radius: 10px;\n\n  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;\n'], ['\n  max-width: 90vw;\n  width: 60rem;\n  padding: 2rem;\n  margin: 0 auto;\n\n  background-color: #fff;\n  background-radius: 10px;\n\n  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;\n'])));
+	var templateObject_1$6, templateObject_2$3;
 
-	var defaultValue = {};
-	var AnnotationContext = react.exports.createContext(defaultValue);
+	var defaultValue$1 = {};
+	var AnnotationContext = react.exports.createContext(defaultValue$1);
 	var AnnotationContextProvider = AnnotationContext.Provider;
 
-	var Button = qe.button(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject([
+	var Button = qe.button(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject([
 	  '\n  display: inline-block;\n  outline: 0;\n  \n  border: none;\n  \n  padding: 0 56px;\n  height: 38px;\n  \n  line-height: 38px;\n  border-radius: 7px;\n\n  background-color: #0070f3;\n  color: white;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n  ',
 	  '\n'
 	], [
@@ -9551,7 +9562,7 @@
 	  var _b = _a.disabled, disabled = _b === void 0 ? false : _b;
 	  return disabled ? 'opacity: 0.6;' : '\n    cursor: pointer;\n\n    :hover{\n      background: rgba(0,118,255,0.9);\n      box-shadow: 0 6px 20px rgb(0 118 255 / 23%);\n    }\n  ';
 	});
-	var OutlineButton = qe.button(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject([
+	var OutlineButton = qe.button(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject([
 	  '\n  display: inline-block;\n  outline: 0;\n\n  border: none;\n\n  padding: 0 56px;\n  height: 38px;\n\n  line-height: 38px;\n  border-radius: 7px;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  background: #fff;\n  color: #696969;\n\n  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n\n  ',
 	  '\n'
 	], [
@@ -9561,10 +9572,10 @@
 	  var _b = _a.disabled, disabled = _b === void 0 ? false : _b;
 	  return disabled ? 'opacity: 0.6;' : '\n    cursor: pointer;\n\n    :hover{\n      background: rgba(255,255,255,0.9);\n      box-shadow: 0 6px 20px rgb(93 93 93 / 23%);\n    }\n  ';
 	});
-	var templateObject_1$3, templateObject_2$1;
+	var templateObject_1$5, templateObject_2$2;
 
-	var OutlineButtonMargin = qe(OutlineButton)(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(['\nmargin-right: 1rem;\n'], ['\nmargin-right: 1rem;\n'])));
-	var ButtonContainer = qe.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(['\ntext-align: end;\n'], ['\ntext-align: end;\n'])));
+	var OutlineButtonMargin = qe(OutlineButton)(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(['\nmargin-right: 1rem;\n'], ['\nmargin-right: 1rem;\n'])));
+	var ButtonContainer = qe.div(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(['\ntext-align: end;\n'], ['\ntext-align: end;\n'])));
 	function UserControls(_a) {
 	  var cancelAction = _a.cancelAction, applyAction = _a.applyAction, _b = _a.applyText, applyText = _b === void 0 ? 'Annotate' : _b, applyDisabled = _a.applyDisabled;
 	  return React.createElement(ButtonContainer, null, React.createElement(OutlineButtonMargin, { onClick: cancelAction }, 'Cancel'), React.createElement(Button, {
@@ -9572,7 +9583,7 @@
 	    onClick: applyAction
 	  }, applyText));
 	}
-	var templateObject_1$2, templateObject_2;
+	var templateObject_1$4, templateObject_2$1;
 
 	var SchemaTypes$1 = [
 		{
@@ -14362,8 +14373,8 @@
 	  return NonceProvider;
 	})(react.exports.Component);
 
-	var SmallText = qe.p(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(['\n  font-size: 0.8em;\n  opacity: 0.7;\n  margin-bottom: 0;\n'], ['\n  font-size: 0.8em;\n  opacity: 0.7;\n  margin-bottom: 0;\n'])));
-	var templateObject_1$1;
+	var SmallText = qe.p(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(['\n  font-size: 0.8em;\n  opacity: 0.7;\n  margin-bottom: 0;\n'], ['\n  font-size: 0.8em;\n  opacity: 0.7;\n  margin-bottom: 0;\n'])));
+	var templateObject_1$3;
 
 	/**
 	 * A set of all the parents currently being observe. This is the only non weak
@@ -14858,7 +14869,7 @@
 	    }
 	}
 
-	var SelectionContainer = qe.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\n  margin: 2em 0;\n'], ['\n  margin: 2em 0;\n'])));
+	var SelectionContainer = qe.div(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(['\n  margin: 2em 0;\n'], ['\n  margin: 2em 0;\n'])));
 	function Selector(_a) {
 	  var selection = _a.selection, setSelection = _a.setSelection, options = _a.options, name = _a.name, description = _a.description;
 	  var parent = react.exports.useRef(null);
@@ -14875,7 +14886,7 @@
 	    options: options
 	  })), selection && React.createElement(React.Fragment, null, React.createElement(SmallText, null, description), React.createElement('p', null, selection.comment)));
 	}
-	var templateObject_1;
+	var templateObject_1$2;
 
 	function AnnotateType() {
 	  var _a = react.exports.useContext(AnnotationContext), node = _a.node, resolve = _a.resolve, reject = _a.reject;
@@ -15093,7 +15104,7 @@
 	      cancelAction: cancelEdit
 	    }));
 	  }
-	  return React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Property: ', nodeValue.itemprop, ' ', nodeValue.itemscope ? React.createElement('i', null, '(also ', nodeValue.itemtype, ')') : ''), React.createElement('p', null, nodeContent.innerText), React.createElement('p', null, schemaType.comment), isNodeEdited ? React.createElement(UserControls, {
+	  return React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Property: ', nodeValue.itemprop, ' ', nodeValue.itemscope ? React.createElement('i', null, '(also ', nodeValue.itemtype, ')') : ''), React.createElement('p', null, nodeContent.innerText), React.createElement('p', null, schemaType && schemaType.comment), isNodeEdited ? React.createElement(UserControls, {
 	    applyAction: saveEdit,
 	    applyText: 'Save',
 	    cancelAction: reject
@@ -15108,10 +15119,125 @@
 	  return React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Annotating:'), React.createElement('p', null, node.content), React.createElement(AnnotateProperty, null));
 	}
 
+	var defaultValue = {};
+	var DBPediaContext = react.exports.createContext(defaultValue);
+	var DBPediaContextProvider = DBPediaContext.Provider;
+
+	var AnnotatedItem = qe.span(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(['\n  background-color: #ff000010;\n  border: 1px solid #00000020;\n  position: relative;\n'], ['\n  background-color: #ff000010;\n  border: 1px solid #00000020;\n  position: relative;\n'])));
+	var HoverBubble = qe.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(['\n  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;\n  position: absolute;\n  padding: 15px;\n  background-color: #fff;\n  color: #000;\n  z-index: 10001;\n'], ['\n  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;\n  position: absolute;\n  padding: 15px;\n  background-color: #fff;\n  color: #000;\n  z-index: 10001;\n'])));
+	function AnnotatedElement(_a) {
+	  var itemprop = _a.itemprop, label = _a.label;
+	  var _b = react.exports.useState(false), hover = _b[0], setHover = _b[1];
+	  var itemPropValue = itemprop.split(', ').join(' ');
+	  function enableHover() {
+	    setHover(true);
+	  }
+	  function disableHover() {
+	    setHover(false);
+	  }
+	  return React.createElement(React.Fragment, null, React.createElement(AnnotatedItem, {
+	    onMouseEnter: enableHover,
+	    onMouseLeave: disableHover,
+	    itemProp: itemPropValue
+	  }, label, hover && React.createElement(HoverBubble, null, itemprop)));
+	}
+	var templateObject_1$1, templateObject_2;
+
+	function AnnotatedText(_a) {
+	  var annotationDetails = _a.annotationDetails;
+	  var _b = react.exports.useState([]), content = _b[0], setContent = _b[1];
+	  console.log('details', annotationDetails);
+	  react.exports.useEffect(function () {
+	    var elements = [];
+	    var content = annotationDetails['@text'];
+	    var beginingOffset = 0;
+	    annotationDetails.surfaceForm.sort(function (a, b) {
+	      return a['@offset'] - b['@offset'];
+	    }).forEach(function (annotation, index) {
+	      if (annotation['@offset'] < beginingOffset) {
+	        return;
+	      }
+	      var text = content.substring(0, annotation['@offset'] - beginingOffset);
+	      beginingOffset = beginingOffset + text.length + annotation['@name'].length;
+	      content = content.replace(text, '').replace(annotation['@name'], '');
+	      var currentAnnotatedElement = React.createElement(AnnotatedElement, {
+	        key: index,
+	        itemprop: annotation.resource['@types'],
+	        label: annotation['@name']
+	      });
+	      elements = __spreadArray(__spreadArray([], elements, true), [
+	        text,
+	        currentAnnotatedElement
+	      ], false);
+	    });
+	    setContent(__spreadArray(__spreadArray([], elements, true), [content], false));
+	  }, [annotationDetails]);
+	  function renderElements() {
+	    return content.map(function (annotatedElement, index) {
+	      return React.createElement(React.Fragment, { key: index }, annotatedElement);
+	    });
+	  }
+	  return React.createElement(React.Fragment, null, renderElements());
+	}
+
+	var DBPEDIA_SPOTLIGHT_API = 'https://api.dbpedia-spotlight.org/en/candidates?text=';
+	var Container = qe.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(['\n  margin-bottom: 20px;\n'], ['\n  margin-bottom: 20px;\n'])));
+	function DBPediaUI() {
+	  var _a = react.exports.useContext(DBPediaContext), content = _a.content, resolve = _a.resolve, reject = _a.reject;
+	  var _b = react.exports.useState(), annotationData = _b[0], setAnnotationData = _b[1];
+	  var _c = react.exports.useState(''), error = _c[0], setError = _c[1];
+	  var _d = react.exports.useState(false), loading = _d[0], setLoading = _d[1];
+	  function annotate() {
+	    setLoading(true);
+	    var url = DBPEDIA_SPOTLIGHT_API + encodeURIComponent(content);
+	    var headers = { 'accept': 'application/json' };
+	    fetch(url, { headers: headers }).then(function (response) {
+	      return response.json();
+	    }).then(function (response) {
+	      if (!('surfaceForm' in response.annotation)) {
+	        return { annotation: __assign(__assign({}, response.annotation), { surfaceForm: [] }) };
+	      }
+	      if (!Array.isArray(response.annotation.surfaceForm)) {
+	        response.annotation.surfaceForm = [response.annotation.surfaceForm];
+	      }
+	      return response;
+	    }).then(function (response) {
+	      response.annotation.surfaceForm = response.annotation.surfaceForm.filter(function (annotation) {
+	        return !!annotation.resource['@types'];
+	      });
+	      return response;
+	    }).then(function (_a) {
+	      var annotation = _a.annotation;
+	      return setAnnotationData(annotation);
+	    }).catch(function (err) {
+	      return setError('Error occurred. ' + err);
+	    });
+	  }
+	  function saveAnnotations() {
+	    resolve(annotationData);
+	  }
+	  react.exports.useEffect(function () {
+	    setLoading(false);
+	  }, [annotationData]);
+	  return React.createElement(Modal, null, React.createElement(ModalContent, null, React.createElement('h3', null, 'Annotate using DBPedia'), React.createElement(SmallText, null, 'Using DBPedia Spotlight API you can automatically detect possible annotations in the text you selected.'), React.createElement(Container, null, annotationData ? React.createElement(AnnotatedText, { annotationDetails: annotationData }) : React.createElement('p', null, content), error && React.createElement(React.Fragment, null, React.createElement(SmallText, null, 'Error:'), React.createElement('p', null, error))), annotationData ? React.createElement(UserControls, {
+	    applyAction: saveAnnotations,
+	    applyText: 'Save',
+	    cancelAction: reject
+	  }) : React.createElement(UserControls, {
+	    applyAction: annotate,
+	    applyDisabled: loading,
+	    applyText: 'Annotate',
+	    cancelAction: reject
+	  })));
+	}
+	var templateObject_1;
+
 	var thingRoot = undefined;
 	var thingRootElement = undefined;
 	var propertyRoot = undefined;
 	var propertyRootElement = undefined;
+	var dbpediaRoot = undefined;
+	var dbpediaRootElement = undefined;
 	function generateRoot() {
 	  var rootElement = document.createElement('div');
 	  var id = 'zavrad-root-' + Math.floor(Math.random() * 1000);
@@ -15141,6 +15267,17 @@
 	    }
 	  }, React.createElement(PropertyUI, null))));
 	}
+	function mountDBPediaApp(resolveFunction, rejectFunction, content) {
+	  dbpediaRootElement = generateRoot();
+	  dbpediaRoot = createRoot(dbpediaRootElement);
+	  dbpediaRoot.render(React.createElement(React.StrictMode, null, React.createElement(DBPediaContextProvider, {
+	    value: {
+	      resolve: resolveFunction,
+	      reject: rejectFunction,
+	      content: content
+	    }
+	  }, React.createElement(DBPediaUI, null))));
+	}
 	function unmountReactTypeApp() {
 	  if (thingRootElement == undefined || thingRoot == undefined) {
 	    return;
@@ -15155,9 +15292,65 @@
 	  propertyRoot.unmount();
 	  propertyRootElement.remove();
 	}
+	function unmountDBPediaApp() {
+	  if (dbpediaRootElement == undefined || dbpediaRoot == undefined) {
+	    return;
+	  }
+	  dbpediaRoot.unmount();
+	  dbpediaRootElement.remove();
+	}
 
-	var enabledThingView = false;
-	var enabledPropertyView = false;
+	var enabledPropertyView$1 = false;
+	function SetupDBPediaAnnotation(editor) {
+	  editor.ui.registry.addButton('zavrad_dbpedia', {
+	    text: 'DBPedia annotation',
+	    onAction: function () {
+	      enabledPropertyView$1 = !enabledPropertyView$1;
+	      if (enabledPropertyView$1) {
+	        new Promise(function (resolve, reject) {
+	          var selectedContent = editor.selection.getSel().toString();
+	          if (!selectedContent) {
+	            reject();
+	            return;
+	          }
+	          mountDBPediaApp(resolve, reject, selectedContent);
+	        }).then(function (annotationDetails) {
+	          console.log('recieved data', annotationDetails);
+	          var elements = document.createElement('pre');
+	          var content = annotationDetails['@text'];
+	          var beginingOffset = 0;
+	          annotationDetails.surfaceForm.sort(function (a, b) {
+	            return a['@offset'] - b['@offset'];
+	          }).forEach(function (annotation) {
+	            if (annotation['@offset'] < beginingOffset) {
+	              return;
+	            }
+	            var text = content.substring(0, annotation['@offset'] - beginingOffset);
+	            var textNode = document.createTextNode(text);
+	            beginingOffset = beginingOffset + text.length + annotation['@name'].length;
+	            content = content.replace(text, '').replace(annotation['@name'], '');
+	            var currentAnnotatedElement = document.createElement('span');
+	            currentAnnotatedElement.innerHTML = annotation['@name'];
+	            currentAnnotatedElement.setAttribute('itemprop', annotation.resource['@types'].split(', ').join(' '));
+	            elements.appendChild(textNode);
+	            elements.appendChild(currentAnnotatedElement);
+	          });
+	          elements.appendChild(document.createTextNode(content));
+	          var result = elements.innerHTML;
+	          result = result.replaceAll('\n', '<br>');
+	          editor.selection.setContent(result);
+	        }).finally(function () {
+	          unmountDBPediaApp();
+	          enabledPropertyView$1 = false;
+	        });
+	      } else {
+	        unmountDBPediaApp();
+	        enabledPropertyView$1 = false;
+	      }
+	    }
+	  });
+	}
+
 	function isScoped(node) {
 	  return node.hasAttribute('itemscope');
 	}
@@ -15187,51 +15380,9 @@
 	  }
 	  return node;
 	}
-	var setup = function (editor) {
-	  editor.ui.registry.addButton('zavrad_thing', {
-	    text: 'Annotate thing',
-	    onAction: function () {
-	      var rng = editor.selection.getRng();
-	      if (rng.startContainer !== rng.endContainer) ;
-	      enabledThingView = !enabledThingView;
-	      if (enabledThingView) {
-	        new Promise(function (resolve, reject) {
-	          var selectedNode = editor.selection.getNode();
-	          var selectedContent = editor.selection.getContent();
-	          var nodeInfo = {};
-	          if (!selectedContent) {
-	            nodeInfo.content = selectedNode;
-	            nodeInfo.itemscope = isScoped(selectedNode);
-	            if (isProped(selectedNode)) {
-	              nodeInfo.itemprop = selectedNode.getAttribute('itemprop');
-	            }
-	            if (isTyped(selectedNode)) {
-	              nodeInfo.itemtype = selectedNode.getAttribute('itemtype');
-	            }
-	            if (!nodeInfo.itemscope && !nodeInfo.itemtype) {
-	              enabledThingView = false;
-	              return;
-	            }
-	          } else {
-	            nodeInfo.content = selectedContent;
-	          }
-	          mountReactTypeApp(resolve, reject, nodeInfo);
-	        }).then(function (result) {
-	          var newNode = prepareNewNode(result);
-	          if (typeof (result === null || result === void 0 ? void 0 : result.content) === 'string') {
-	            newNode.innerHTML = editor.selection.getContent();
-	            editor.selection.setNode(newNode);
-	          }
-	        }).finally(function () {
-	          unmountReactTypeApp();
-	          enabledThingView = false;
-	        });
-	      } else {
-	        unmountReactTypeApp();
-	        enabledThingView = false;
-	      }
-	    }
-	  });
+
+	var enabledPropertyView = false;
+	function SetupAnnotateProperty(editor) {
 	  editor.ui.registry.addButton('zavrad_property', {
 	    text: 'Annotate property',
 	    onAction: function () {
@@ -15241,7 +15392,7 @@
 	      if (enabledPropertyView) {
 	        new Promise(function (resolve, reject) {
 	          var selectedNode = editor.selection.getNode();
-	          var selectedContent = editor.selection.getContent();
+	          var selectedContent = editor.selection.getSel().toString();
 	          var nodeInfo = {};
 	          if (!selectedContent) {
 	            nodeInfo.content = selectedNode;
@@ -15276,6 +15427,60 @@
 	      }
 	    }
 	  });
+	}
+
+	var enabledThingView = false;
+	function SetupAnnotateThing(editor) {
+	  editor.ui.registry.addButton('zavrad_thing', {
+	    text: 'Annotate thing',
+	    onAction: function () {
+	      var rng = editor.selection.getRng();
+	      if (rng.startContainer !== rng.endContainer) ;
+	      enabledThingView = !enabledThingView;
+	      if (enabledThingView) {
+	        new Promise(function (resolve, reject) {
+	          var selectedNode = editor.selection.getNode();
+	          var selectedContent = editor.selection.getSel().toString();
+	          var nodeInfo = {};
+	          if (!selectedContent) {
+	            nodeInfo.content = selectedNode;
+	            nodeInfo.itemscope = isScoped(selectedNode);
+	            if (isProped(selectedNode)) {
+	              nodeInfo.itemprop = selectedNode.getAttribute('itemprop');
+	            }
+	            if (isTyped(selectedNode)) {
+	              nodeInfo.itemtype = selectedNode.getAttribute('itemtype');
+	            }
+	            if (!nodeInfo.itemscope && !nodeInfo.itemtype) {
+	              enabledThingView = false;
+	              return;
+	            }
+	          } else {
+	            nodeInfo.content = selectedContent;
+	          }
+	          mountReactTypeApp(resolve, reject, nodeInfo);
+	        }).then(function (result) {
+	          var newNode = prepareNewNode(result);
+	          if (typeof (result === null || result === void 0 ? void 0 : result.content) === 'string') {
+	            newNode.innerHTML = editor.selection.getContent();
+	            editor.selection.setNode(newNode);
+	          }
+	        }).finally(function () {
+	          unmountReactTypeApp();
+	          enabledThingView = false;
+	        });
+	      } else {
+	        unmountReactTypeApp();
+	        enabledThingView = false;
+	      }
+	    }
+	  });
+	}
+
+	var setup = function (editor) {
+	  SetupAnnotateThing(editor);
+	  SetupAnnotateProperty(editor);
+	  SetupDBPediaAnnotation(editor);
 	};
 	function Plugin () {
 	  tinymce.PluginManager.add('zavrad', setup);

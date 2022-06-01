@@ -76,7 +76,7 @@ function ExistingAnnotation() {
                 nodeValue.itemtype,
                 ")") : ''),
         React.createElement("p", null, nodeContent.innerText),
-        React.createElement("p", null, schemaType.comment),
+        React.createElement("p", null, schemaType && schemaType.comment),
         isNodeEdited ? (React.createElement(UserControls, { applyAction: saveEdit, applyText: 'Save', cancelAction: reject })) : (React.createElement(UserControls, { applyAction: editAnnotation, applyText: 'Edit', cancelAction: reject }))));
 }
 function NewAnnotation() {

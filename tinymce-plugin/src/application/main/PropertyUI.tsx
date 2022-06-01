@@ -105,7 +105,7 @@ function ExistingAnnotation(): ReactElement {
       <SmallText>Property: {nodeValue.itemprop} {nodeValue.itemscope ? <i>(also {nodeValue.itemtype})</i> : ''}</SmallText>
       <p>{nodeContent.innerText}</p>
 
-      <p>{schemaType.comment}</p>
+      <p>{schemaType && schemaType.comment}</p>
 
       {
         isNodeEdited ? (
