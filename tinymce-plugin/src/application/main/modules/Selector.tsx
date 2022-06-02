@@ -4,6 +4,7 @@ import { SchemaType } from '../../../model/Schema'
 import { SmallText } from '../../components/Typography'
 import autoAnimate from '@formkit/auto-animate'
 import styled from 'styled-components'
+import parse from 'html-react-parser'
 
 interface SelectorProps {
   selection: SchemaType
@@ -40,7 +41,7 @@ export default function Selector({ selection, setSelection, options, name, descr
         selection && (
           <>
             <SmallText>{description}</SmallText>
-            <p>{selection.comment}</p>
+            <p>{parse(selection.comment)}</p>
           </>
         )
       }

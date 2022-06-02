@@ -17,10 +17,8 @@ export function prepareNewNode(nodeInfo: RichNode): Element {
 
   if (typeof nodeInfo.content === 'object') {
     node = nodeInfo.content
-    console.log('old node', node)
   } else {
     node = document.createElement('span')
-    console.log('new node', node)
   }
 
   if (nodeInfo.itemscope) {

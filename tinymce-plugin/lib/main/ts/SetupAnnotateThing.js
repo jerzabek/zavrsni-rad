@@ -5,10 +5,6 @@ export default function SetupAnnotateThing(editor) {
     editor.ui.registry.addButton('zavrad_thing', {
         text: 'Annotate thing',
         onAction: function () {
-            var rng = editor.selection.getRng();
-            if (rng.startContainer !== rng.endContainer) {
-                // return;
-            }
             enabledThingView = !enabledThingView;
             if (enabledThingView) {
                 new Promise(function (resolve, reject) {

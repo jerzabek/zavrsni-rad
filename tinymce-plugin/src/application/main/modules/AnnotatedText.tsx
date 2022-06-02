@@ -29,7 +29,6 @@ interface AnnotatedTextProps {
 
 export default function AnnotatedText({ annotationDetails }: AnnotatedTextProps): ReactElement {
   const [content, setContent] = useState<Array<ReactElement | string>>([])
-  console.log('details', annotationDetails)
 
   useEffect(() => {
     let elements = []
@@ -49,7 +48,7 @@ export default function AnnotatedText({ annotationDetails }: AnnotatedTextProps)
       content = content.replace(text, '').replace(annotation['@name'], '')
 
       const currentAnnotatedElement = (
-        <AnnotatedElement key={index} itemprop={annotation.resource['@types']} label={annotation['@name']} />
+        <AnnotatedElement key={index} itemtype={annotation.resource['@types']} label={annotation['@name']} />
       )
 
       elements = [...elements, text, currentAnnotatedElement]

@@ -2,12 +2,13 @@ import React, { ReactElement, useContext, useState, useEffect, useMemo, useRef }
 import { Modal, ModalContent } from '../components/Modal'
 import { AnnotationContext } from './AnnotationContext'
 import UserControls from './modules/UserControls'
-import AnnotateType from './modules/AnnotateType'
+import AnnotateType, { findSchemaType } from './modules/AnnotateType'
 import { SchemaType } from '../../model/Schema'
 import { SmallText } from '../components/Typography'
 import SchemaTypes from '../../schema.types.json'
 import Selector from './modules/Selector'
 import autoAnimate from '@formkit/auto-animate'
+import parse from 'html-react-parser'
 
 export default function TypeUI(): ReactElement {
   const { node } = useContext(AnnotationContext)
@@ -35,16 +36,13 @@ export default function TypeUI(): ReactElement {
   )
 }
 
-function findSchemaType(id: string): SchemaType {
-  return SchemaTypes.find(({ value }) => value === id)
-}
 
 function ExistingAnnotation(): ReactElement {
   const { node, resolve, reject } = useContext(AnnotationContext)
 
   const [nodeValue, setNodeValue] = useState(node)
 
-  const schemaType = useMemo(() => findSchemaType(nodeValue.itemtype), [nodeValue.itemtype])
+  const schemaTypes: SchemaType[] = useMemo(() => nodeValue.itemtype.split(" ").map(type => findSchemaType(type)).filter(type => !!type), [nodeValue.itemtype])
 
   const [childProperties, setChildProperties] = useState<Element[]>([])
   const parent = useRef(null)
@@ -114,7 +112,15 @@ function ExistingAnnotation(): ReactElement {
       <SmallText>Type: {nodeValue.itemscope ? nodeValue.itemtype : '-'}</SmallText>
       <p>{nodeContent.innerText}</p>
 
-      <p>{schemaType.comment}</p>
+      {
+        schemaTypes.length == 1 ? (
+          <p>{parse(schemaTypes[0].comment)}</p>
+        ) : (
+          schemaTypes.map(type => (
+            <p>{type.label}: {parse(type.comment)}</p>
+          ))
+        )
+      }
 
       {childProperties?.length > 0 && (
         <>

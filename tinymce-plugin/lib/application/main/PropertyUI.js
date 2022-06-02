@@ -8,6 +8,7 @@ import { SmallText } from '../components/Typography';
 import SchemaTypes from '../../schema.props.json';
 import autoAnimate from '@formkit/auto-animate';
 import Selector from './modules/Selector';
+import parse from 'html-react-parser';
 export default function PropertyUI() {
     var node = useContext(AnnotationContext).node;
     if (typeof node.content === 'object') {
@@ -76,7 +77,7 @@ function ExistingAnnotation() {
                 nodeValue.itemtype,
                 ")") : ''),
         React.createElement("p", null, nodeContent.innerText),
-        React.createElement("p", null, schemaType && schemaType.comment),
+        React.createElement("p", null, schemaType && schemaType.comment ? parse(schemaType.comment) : '-'),
         isNodeEdited ? (React.createElement(UserControls, { applyAction: saveEdit, applyText: 'Save', cancelAction: reject })) : (React.createElement(UserControls, { applyAction: editAnnotation, applyText: 'Edit', cancelAction: reject }))));
 }
 function NewAnnotation() {

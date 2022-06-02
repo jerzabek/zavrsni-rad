@@ -15,7 +15,6 @@ export default function SetupDBPediaAnnotation(editor) {
                     }
                     mountDBPediaApp(resolve, reject, selectedContent);
                 }).then(function (annotationDetails) {
-                    console.log('recieved data', annotationDetails);
                     var elements = document.createElement('pre');
                     var content = annotationDetails['@text'];
                     var beginingOffset = 0;
@@ -31,7 +30,8 @@ export default function SetupDBPediaAnnotation(editor) {
                         content = content.replace(text, '').replace(annotation['@name'], '');
                         var currentAnnotatedElement = document.createElement('span');
                         currentAnnotatedElement.innerHTML = annotation['@name'];
-                        currentAnnotatedElement.setAttribute('itemprop', annotation.resource['@types'].split(", ").join(' '));
+                        currentAnnotatedElement.setAttribute('itemscope', 'true');
+                        currentAnnotatedElement.setAttribute('itemtype', annotation.resource['@types'].split(", ").filter(function (type) { return type.startsWith("Schema:"); }).map(function (type) { return type.replace("Schema:", "https://schema.org/"); }).join(' '));
                         elements.appendChild(textNode);
                         elements.appendChild(currentAnnotatedElement);
                     });

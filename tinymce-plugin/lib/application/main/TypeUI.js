@@ -3,11 +3,12 @@ import React, { useContext, useState, useEffect, useMemo, useRef } from 'react';
 import { Modal, ModalContent } from '../components/Modal';
 import { AnnotationContext } from './AnnotationContext';
 import UserControls from './modules/UserControls';
-import AnnotateType from './modules/AnnotateType';
+import AnnotateType, { findSchemaType } from './modules/AnnotateType';
 import { SmallText } from '../components/Typography';
 import SchemaTypes from '../../schema.types.json';
 import Selector from './modules/Selector';
 import autoAnimate from '@formkit/auto-animate';
+import parse from 'html-react-parser';
 export default function TypeUI() {
     var node = useContext(AnnotationContext).node;
     if (typeof node.content === 'object') {
@@ -21,16 +22,10 @@ export default function TypeUI() {
             React.createElement("h3", null, "Annotating new thing"),
             React.createElement(NewAnnotation, null))));
 }
-function findSchemaType(id) {
-    return SchemaTypes.find(function (_a) {
-        var value = _a.value;
-        return value === id;
-    });
-}
 function ExistingAnnotation() {
     var _a = useContext(AnnotationContext), node = _a.node, resolve = _a.resolve, reject = _a.reject;
     var _b = useState(node), nodeValue = _b[0], setNodeValue = _b[1];
-    var schemaType = useMemo(function () { return findSchemaType(nodeValue.itemtype); }, [nodeValue.itemtype]);
+    var schemaTypes = useMemo(function () { return nodeValue.itemtype.split(" ").map(function (type) { return findSchemaType(type); }).filter(function (type) { return !!type; }); }, [nodeValue.itemtype]);
     var _c = useState([]), childProperties = _c[0], setChildProperties = _c[1];
     var parent = useRef(null);
     useEffect(function () {
@@ -77,7 +72,10 @@ function ExistingAnnotation() {
             "Type: ",
             nodeValue.itemscope ? nodeValue.itemtype : '-'),
         React.createElement("p", null, nodeContent.innerText),
-        React.createElement("p", null, schemaType.comment),
+        schemaTypes.length == 1 ? (React.createElement("p", null, parse(schemaTypes[0].comment))) : (schemaTypes.map(function (type) { return (React.createElement("p", null,
+            type.label,
+            ": ",
+            parse(type.comment))); })),
         (childProperties === null || childProperties === void 0 ? void 0 : childProperties.length) > 0 && (React.createElement(React.Fragment, null,
             React.createElement(SmallText, null, "Properties:"),
             childProperties.map(function (elem, index) { return (React.createElement("p", { key: index },

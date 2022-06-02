@@ -9,11 +9,6 @@ export default function SetupAnnotateProperty(editor: Editor): void {
   editor.ui.registry.addButton('zavrad_property', {
     text: 'Annotate property',
     onAction: () => {
-      const rng = editor.selection.getRng()
-      if (rng.startContainer !== rng.endContainer) {
-        // return;
-      }
-
       enabledPropertyView = !enabledPropertyView;
 
       if (enabledPropertyView) {

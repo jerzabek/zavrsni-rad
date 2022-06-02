@@ -4,7 +4,6 @@ import AnnotatedElement from './AnnotatedElement';
 export default function AnnotatedText(_a) {
     var annotationDetails = _a.annotationDetails;
     var _b = useState([]), content = _b[0], setContent = _b[1];
-    console.log('details', annotationDetails);
     useEffect(function () {
         var elements = [];
         var content = annotationDetails['@text'];
@@ -18,7 +17,7 @@ export default function AnnotatedText(_a) {
             var text = content.substring(0, annotation['@offset'] - beginingOffset);
             beginingOffset = beginingOffset + text.length + annotation['@name'].length;
             content = content.replace(text, '').replace(annotation['@name'], '');
-            var currentAnnotatedElement = (React.createElement(AnnotatedElement, { key: index, itemprop: annotation.resource['@types'], label: annotation['@name'] }));
+            var currentAnnotatedElement = (React.createElement(AnnotatedElement, { key: index, itemtype: annotation.resource['@types'], label: annotation['@name'] }));
             elements = __spreadArray(__spreadArray([], elements, true), [text, currentAnnotatedElement], false);
         });
         setContent(__spreadArray(__spreadArray([], elements, true), [content], false));

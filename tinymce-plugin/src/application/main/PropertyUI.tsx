@@ -8,6 +8,7 @@ import SchemaTypes from '../../schema.props.json'
 import { SchemaType } from '../../model/Schema'
 import autoAnimate from '@formkit/auto-animate'
 import Selector from './modules/Selector'
+import parse from 'html-react-parser'
 
 export default function PropertyUI(): ReactElement {
   const { node } = useContext(AnnotationContext)
@@ -105,7 +106,7 @@ function ExistingAnnotation(): ReactElement {
       <SmallText>Property: {nodeValue.itemprop} {nodeValue.itemscope ? <i>(also {nodeValue.itemtype})</i> : ''}</SmallText>
       <p>{nodeContent.innerText}</p>
 
-      <p>{schemaType && schemaType.comment}</p>
+      <p>{schemaType && schemaType.comment ? parse(schemaType.comment) : '-'}</p>
 
       {
         isNodeEdited ? (

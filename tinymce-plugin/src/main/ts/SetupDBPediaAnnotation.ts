@@ -22,8 +22,6 @@ export default function SetupDBPediaAnnotation(editor: Editor): void {
 
           mountDBPediaApp(resolve, reject, selectedContent)
         }).then((annotationDetails: DBPediaAnnotation) => {
-          console.log('recieved data', annotationDetails)
-
           const elements = document.createElement('pre')
           let content = annotationDetails['@text']
           let beginingOffset = 0;
@@ -44,7 +42,8 @@ export default function SetupDBPediaAnnotation(editor: Editor): void {
 
             const currentAnnotatedElement = document.createElement('span')
             currentAnnotatedElement.innerHTML = annotation['@name']
-            currentAnnotatedElement.setAttribute('itemprop', annotation.resource['@types'].split(", ").join(' '))
+            currentAnnotatedElement.setAttribute('itemscope', 'true')
+            currentAnnotatedElement.setAttribute('itemtype', annotation.resource['@types'].split(", ").filter(type => type.startsWith("Schema:")).map(type => type.replace("Schema:", "https://schema.org/")).join(' '))
 
             elements.appendChild(textNode)
             elements.appendChild(currentAnnotatedElement)

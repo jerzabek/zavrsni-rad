@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from 'react';
 import styled from 'styled-components';
 
 interface AnnotatedElementProps {
-  itemprop: string
+  itemtype: string
   label: string
 }
 
@@ -21,12 +21,13 @@ const HoverBubble = styled.div`
   z-index: 10001;
 `
 
-export default function AnnotatedElement({ itemprop, label }: AnnotatedElementProps): ReactElement {
+export default function AnnotatedElement({ itemtype, label }: AnnotatedElementProps): ReactElement {
   const [hover, setHover] = useState(false)
 
-  // The itemprop attribute may, according to specification, contain multiple unordered values spearated by a space
-  // https://html.spec.whatwg.org/multipage/microdata.html#names%3A-the-itemprop-attribute
-  const itemPropValue = itemprop.split(", ").join(' ')
+  // The itemtype attribute may, according to specification, contain multiple unordered values spearated by a space
+  // The values of this attribute must be valid URLs that are defined to use the same vocabulary - in our case only schema.org
+  // https://html.spec.whatwg.org/multipage/microdata.html#attr-itemtype
+  const itemType = itemtype.split(", ").filter(type => type.startsWith("Schema:")).map(type => type.replace("Schema:", "https://schema.org/")).join(' ')
   
   function enableHover() {
     setHover(true)
@@ -38,11 +39,11 @@ export default function AnnotatedElement({ itemprop, label }: AnnotatedElementPr
 
   return (
     <React.Fragment>
-      <AnnotatedItem onMouseEnter={enableHover} onMouseLeave={disableHover} itemProp={itemPropValue}>
+      <AnnotatedItem onMouseEnter={enableHover} onMouseLeave={disableHover} itemScope={true} itemType={itemType}>
         {label}
         {
           hover && (
-            <HoverBubble>{itemprop}</HoverBubble>
+            <HoverBubble>{itemtype}</HoverBubble>
           )
         }
       </AnnotatedItem>
