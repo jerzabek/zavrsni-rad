@@ -2,7 +2,7 @@ import { __assign } from "tslib";
 import React, { useContext, useState, useEffect, useRef, useMemo } from 'react';
 import { Modal, ModalContent } from '../components/Modal';
 import { AnnotationContext } from './AnnotationContext';
-import UserControls from './modules/UserControls';
+import UserControls, { UserControlsWithDelete } from './modules/UserControls';
 import AnnotateProperty from './modules/AnnotateProperty';
 import { SmallText } from '../components/Typography';
 import SchemaTypes from '../../schema.props.json';
@@ -58,6 +58,10 @@ function ExistingAnnotation() {
     function saveEdit() {
         resolve(nodeValue);
     }
+    function removeAnnotation() {
+        delete nodeValue.itemprop;
+        resolve(nodeValue);
+    }
     if (editMode) {
         return (React.createElement(React.Fragment, null,
             React.createElement("p", null,
@@ -78,7 +82,7 @@ function ExistingAnnotation() {
                 ")") : ''),
         React.createElement("p", null, nodeContent.innerText),
         React.createElement("p", null, schemaType && schemaType.comment ? parse(schemaType.comment) : '-'),
-        isNodeEdited ? (React.createElement(UserControls, { applyAction: saveEdit, applyText: 'Save', cancelAction: reject })) : (React.createElement(UserControls, { applyAction: editAnnotation, applyText: 'Edit', cancelAction: reject }))));
+        isNodeEdited ? (React.createElement(UserControlsWithDelete, { removeAction: removeAnnotation, applyAction: saveEdit, applyText: 'Save', cancelAction: reject })) : (React.createElement(UserControlsWithDelete, { removeAction: removeAnnotation, applyAction: editAnnotation, applyText: 'Edit', cancelAction: reject }))));
 }
 function NewAnnotation() {
     var node = useContext(AnnotationContext).node;

@@ -9584,7 +9584,8 @@
 	  var _b = _a.disabled, disabled = _b === void 0 ? false : _b;
 	  return disabled ? 'opacity: 0.6;' : '\n    cursor: pointer;\n\n    :hover{\n      background: rgba(0,118,255,0.9);\n      box-shadow: 0 6px 20px rgb(0 118 255 / 23%);\n    }\n  ';
 	});
-	var OutlineButton = qe.button(templateObject_2$3 || (templateObject_2$3 = __makeTemplateObject([
+	var RedButton = qe.button(templateObject_2$3 || (templateObject_2$3 = __makeTemplateObject(['\n  display: inline-block;\n  outline: 0;\n  \n  border: none;\n  \n  padding: 0 56px;\n  height: 38px;\n  margin-right: 1rem;\n  \n  line-height: 38px;\n  border-radius: 7px;\n\n  background-color: #d62828;\n  color: white;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n  cursor: pointer;\n\n  :hover{\n    background: rgba(214, 40, 40, 0.9);\n    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);\n  }\n'], ['\n  display: inline-block;\n  outline: 0;\n  \n  border: none;\n  \n  padding: 0 56px;\n  height: 38px;\n  margin-right: 1rem;\n  \n  line-height: 38px;\n  border-radius: 7px;\n\n  background-color: #d62828;\n  color: white;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n  cursor: pointer;\n\n  :hover{\n    background: rgba(214, 40, 40, 0.9);\n    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);\n  }\n'])));
+	var OutlineButton = qe.button(templateObject_3 || (templateObject_3 = __makeTemplateObject([
 	  '\n  display: inline-block;\n  outline: 0;\n\n  border: none;\n\n  padding: 0 56px;\n  height: 38px;\n\n  line-height: 38px;\n  border-radius: 7px;\n\n  font-weight: 400;\n  font-size: 16px;\n\n  background: #fff;\n  color: #696969;\n\n  box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);\n  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;\n\n  ',
 	  '\n'
 	], [
@@ -9594,13 +9595,20 @@
 	  var _b = _a.disabled, disabled = _b === void 0 ? false : _b;
 	  return disabled ? 'opacity: 0.6;' : '\n    cursor: pointer;\n\n    :hover{\n      background: rgba(255,255,255,0.9);\n      box-shadow: 0 6px 20px rgb(93 93 93 / 23%);\n    }\n  ';
 	});
-	var templateObject_1$6, templateObject_2$3;
+	var templateObject_1$6, templateObject_2$3, templateObject_3;
 
 	var OutlineButtonMargin = qe(OutlineButton)(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(['\nmargin-right: 1rem;\n'], ['\nmargin-right: 1rem;\n'])));
 	var ButtonContainer = qe.div(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(['\ntext-align: end;\n'], ['\ntext-align: end;\n'])));
 	function UserControls(_a) {
 	  var cancelAction = _a.cancelAction, applyAction = _a.applyAction, _b = _a.applyText, applyText = _b === void 0 ? 'Annotate' : _b, applyDisabled = _a.applyDisabled;
 	  return React$2.createElement(ButtonContainer, null, React$2.createElement(OutlineButtonMargin, { onClick: cancelAction }, 'Cancel'), React$2.createElement(Button, {
+	    disabled: applyDisabled,
+	    onClick: applyAction
+	  }, applyText));
+	}
+	function UserControlsWithDelete(_a) {
+	  var cancelAction = _a.cancelAction, removeAction = _a.removeAction, applyAction = _a.applyAction, _b = _a.applyText, applyText = _b === void 0 ? 'Annotate' : _b, applyDisabled = _a.applyDisabled;
+	  return React$2.createElement(ButtonContainer, null, React$2.createElement(OutlineButtonMargin, { onClick: cancelAction }, 'Cancel'), React$2.createElement(RedButton, { onClick: removeAction }, 'Remove'), React$2.createElement(Button, {
 	    disabled: applyDisabled,
 	    onClick: applyAction
 	  }, applyText));
@@ -43460,6 +43468,11 @@
 	  function saveEdit() {
 	    resolve(nodeValue);
 	  }
+	  function removeAnnotation() {
+	    delete nodeValue.itemscope;
+	    delete nodeValue.itemtype;
+	    resolve(nodeValue);
+	  }
 	  if (editMode) {
 	    return React$2.createElement(React$2.Fragment, null, React$2.createElement('p', null, 'Editing current type: ', nodeValue.itemscope ? nodeValue.itemtype : '-'), React$2.createElement(SmallText, null, nodeContent.innerText), React$2.createElement(Selector, {
 	      selection: editSelection,
@@ -43480,11 +43493,13 @@
 	      href: elem.getAttribute('itemprop'),
 	      target: '_blank'
 	    }, elem.getAttribute('itemprop')), ': ', elem.innerHTML);
-	  })), isNodeEdited ? React$2.createElement(UserControls, {
+	  })), isNodeEdited ? React$2.createElement(UserControlsWithDelete, {
+	    removeAction: removeAnnotation,
 	    applyAction: saveEdit,
 	    applyText: 'Save',
 	    cancelAction: reject
-	  }) : React$2.createElement(UserControls, {
+	  }) : React$2.createElement(UserControlsWithDelete, {
+	    removeAction: removeAnnotation,
 	    applyAction: editAnnotation,
 	    applyText: 'Edit',
 	    cancelAction: reject
@@ -50807,6 +50822,10 @@
 	  function saveEdit() {
 	    resolve(nodeValue);
 	  }
+	  function removeAnnotation() {
+	    delete nodeValue.itemprop;
+	    resolve(nodeValue);
+	  }
 	  if (editMode) {
 	    return React$2.createElement(React$2.Fragment, null, React$2.createElement('p', null, 'Editing current type: ', nodeValue.itemprop), React$2.createElement(SmallText, null, nodeContent.innerText), React$2.createElement(Selector, {
 	      selection: editSelection,
@@ -50820,11 +50839,13 @@
 	      cancelAction: cancelEdit
 	    }));
 	  }
-	  return React$2.createElement(React$2.Fragment, null, React$2.createElement(SmallText, null, 'Property: ', nodeValue.itemprop, ' ', nodeValue.itemscope ? React$2.createElement('i', null, '(also ', nodeValue.itemtype, ')') : ''), React$2.createElement('p', null, nodeContent.innerText), React$2.createElement('p', null, schemaType && schemaType.comment ? parse(schemaType.comment) : '-'), isNodeEdited ? React$2.createElement(UserControls, {
+	  return React$2.createElement(React$2.Fragment, null, React$2.createElement(SmallText, null, 'Property: ', nodeValue.itemprop, ' ', nodeValue.itemscope ? React$2.createElement('i', null, '(also ', nodeValue.itemtype, ')') : ''), React$2.createElement('p', null, nodeContent.innerText), React$2.createElement('p', null, schemaType && schemaType.comment ? parse(schemaType.comment) : '-'), isNodeEdited ? React$2.createElement(UserControlsWithDelete, {
+	    removeAction: removeAnnotation,
 	    applyAction: saveEdit,
 	    applyText: 'Save',
 	    cancelAction: reject
-	  }) : React$2.createElement(UserControls, {
+	  }) : React$2.createElement(UserControlsWithDelete, {
+	    removeAction: removeAnnotation,
 	    applyAction: editAnnotation,
 	    applyText: 'Edit',
 	    cancelAction: reject
@@ -51063,12 +51084,18 @@
 	  }
 	  if (nodeInfo.itemscope) {
 	    node.setAttribute('itemscope', 'true');
+	  } else {
+	    node.removeAttribute('itemscope');
 	  }
 	  if (nodeInfo.itemtype) {
 	    node.setAttribute('itemtype', nodeInfo.itemtype);
+	  } else {
+	    node.removeAttribute('itemtype');
 	  }
 	  if (nodeInfo.itemprop) {
 	    node.setAttribute('itemprop', nodeInfo.itemprop);
+	  } else {
+	    node.removeAttribute('itemprop');
 	  }
 	  return node;
 	}

@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext, useState, useEffect, useMemo, useRef } from 'react'
 import { Modal, ModalContent } from '../components/Modal'
 import { AnnotationContext } from './AnnotationContext'
-import UserControls from './modules/UserControls'
+import UserControls, { UserControlsWithDelete } from './modules/UserControls'
 import AnnotateType, { findSchemaType } from './modules/AnnotateType'
 import { SchemaType } from '../../model/Schema'
 import { SmallText } from '../components/Typography'
@@ -89,6 +89,12 @@ function ExistingAnnotation(): ReactElement {
     resolve(nodeValue)
   }
 
+  function removeAnnotation() {
+    delete nodeValue.itemscope
+    delete nodeValue.itemtype
+    resolve(nodeValue)
+  }
+
   if (editMode) {
     return (
       <>
@@ -135,9 +141,9 @@ function ExistingAnnotation(): ReactElement {
 
       {
         isNodeEdited ? (
-          <UserControls applyAction={saveEdit} applyText='Save' cancelAction={reject} />
+          <UserControlsWithDelete removeAction={removeAnnotation} applyAction={saveEdit} applyText='Save' cancelAction={reject} />
         ) : (
-          <UserControls applyAction={editAnnotation} applyText='Edit' cancelAction={reject} />
+          <UserControlsWithDelete removeAction={removeAnnotation} applyAction={editAnnotation} applyText='Edit' cancelAction={reject} />
         )
       }
     </>

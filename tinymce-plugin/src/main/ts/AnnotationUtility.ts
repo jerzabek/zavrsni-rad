@@ -23,14 +23,20 @@ export function prepareNewNode(nodeInfo: RichNode): Element {
 
   if (nodeInfo.itemscope) {
     node.setAttribute('itemscope', 'true')
+  } else {
+    node.removeAttribute('itemscope')
   }
 
   if (nodeInfo.itemtype) {
     node.setAttribute('itemtype', nodeInfo.itemtype)
+  } else {
+    node.removeAttribute('itemtype')
   }
 
   if (nodeInfo.itemprop) {
     node.setAttribute('itemprop', nodeInfo.itemprop)
+  } else {
+    node.removeAttribute('itemprop')
   }
 
   return node;

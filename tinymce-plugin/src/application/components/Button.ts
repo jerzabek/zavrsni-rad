@@ -34,6 +34,35 @@ export const Button = styled.button<ButtonProps>`
   `}
 `
 
+export const RedButton = styled.button<ButtonProps>`
+  display: inline-block;
+  outline: 0;
+  
+  border: none;
+  
+  padding: 0 56px;
+  height: 38px;
+  margin-right: 1rem;
+  
+  line-height: 38px;
+  border-radius: 7px;
+
+  background-color: #d62828;
+  color: white;
+
+  font-weight: 400;
+  font-size: 16px;
+
+  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+  cursor: pointer;
+
+  :hover{
+    background: rgba(214, 40, 40, 0.9);
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+  }
+`
+
 export const OutlineButton = styled.button<ButtonProps>`
   display: inline-block;
   outline: 0;
